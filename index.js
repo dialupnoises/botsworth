@@ -6,7 +6,7 @@ var commandHooks = {};
 var messageHooks = [];
 
 exports.initialize = function() {
-    var files = fs.readdirSync('./plugins');
+    var files = fs.readdirSync(path.join(__dirname, 'plugins'));
     files.forEach(function(file) {
         if(file.length > 3 && file.substr(-3) == '.js') {
             var plugin = require(path.join(__dirname, 'plugins', file));
