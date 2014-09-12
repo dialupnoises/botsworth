@@ -44,4 +44,10 @@ exports.command = function(uniqueId, username, command, args, callback) {
     }
     if (commandHooks[command.toLowerCase()])
         commandHooks[command.toLowerCase()](uniqueId, username, command, args, callback);
+    else
+        return callback('Command does not exist.', null);
+}
+
+exports.commandExists = function(command) {
+    return commandHooks[command.trim().toLowerCase()] == null;
 }
