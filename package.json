@@ -1,0 +1,26 @@
+{
+  "name": "botsworth",
+  "version": "0.1.0",
+  "description": "Headless chat bot interface.",
+  "author": "Andrew Rogers <anrogers529@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "test": "mocha -R spec"
+  },
+  "repository": "cpancake/botsworth",
+  "homepage": "http://github.com/cpancake/botsworth",
+  "main": "index.js",
+  "author": {
+    "name": "Andrew",
+    "email": "anrogers529@gmail.com"
+  },
+  "dependencies": {
+    "request": "^2.42.0",
+    "mathjs": "^1.0.0",
+    "unitconvert": "^0.1.0"
+  },
+  "devDependencies": {
+    "should": "^4.0.4",
+    "mocha": "^1.21.4"
+  }
+}
