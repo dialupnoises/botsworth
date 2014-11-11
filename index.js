@@ -1,5 +1,6 @@
 ﻿var fs = require('fs'),
-    path = require('path');
+    path = require('path'),
+    domain = require('domain');
 
 var plugins = [];
 var commandHooks = {};
@@ -29,8 +30,14 @@ exports.message = function(uniqueId, username, message, callback) {
         message = username;
         username = uniqueId;
     }
+    var pluginDomain = domain.create();
+    pluginDomain.on('error', function(err) {
+        callback(err, null);
+    });
     messageHooks.forEach(function (hook) {
-        hook(uniqueId, username, message, callback);
+        pluginDomain.run(function() {
+            hook(uniqueId, username, message, callback);
+        });
     });
 }
 
@@ -42,8 +49,14 @@ exports.command = function(uniqueId, username, command, args, callback) {
         command = username;
         username = uniqueId;
     }
+    var pluginDomain = domain.create();
+    pluginDomain.on('error', function(err) {
+        callback(err, null);
+    });
     if (commandHooks[command.toLowerCase()])
-        commandHooks[command.toLowerCase()](uniqueId, username, command, args, callback);
+        pluginDomain.run(function() {
+            commandHooks[command.toLowerCase()](uniqueId, username, command, args, callback);
+        });
     else
         return callback('Command does not exist.', null);
 }

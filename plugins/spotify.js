@@ -33,7 +33,7 @@ function pad(n, width, z) {
 exports.commands = ['spotify'];
 
 exports.message = function(uniqueId, username, message, callback) {
-	if(!spotifyRegex.test(message) && !spotifyUriRegex.test(message)) return;
+	if(!spotifyRegex.test(message) && !spotifyUriRegex.test(message)) return callback(null, null);
 	var id = (spotifyRegex.test(message) ? spotifyRegex : spotifyUriRegex).exec(message)[1];
 	getSpotifyInfo(id, function(err, msg) {
 		callback(err, msg);

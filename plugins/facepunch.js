@@ -22,7 +22,7 @@ function pad(n, width, z) {
 exports.commands = ['facepunch'];
 
 exports.message = function(uniqueId, username, message, callback) {
-	if(!facepunchRegex.test(message)) return;
+	if(!facepunchRegex.test(message)) return callback(null, null);
 	getThreadInfo(facepunchRegex.exec(message)[2], function(err, msg) {
 		callback(err, msg);
 	});

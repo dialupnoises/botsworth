@@ -7,6 +7,7 @@ describe('Stock', function() {
 	describe('#message()', function() {
 		it('should include the proper stock price', function(done) {
 			botsworth.message("bbtest", "$GOOG", function(err, msg) {
+				if(err == null && msg == null) return;
 				(err == null).should.equal(true);
 				msg.indexOf('$').should.be.greaterThan(0);
 				done();
@@ -14,7 +15,8 @@ describe('Stock', function() {
 		});
 		it('should error on an invalid stock', function(done) {
 			botsworth.message("bbtest", "$NOTASTOCK", function(err, msg) {
-				err.should.not.equal(null);
+				if(err == null && msg == null) return;
+				(err == null).should.not.equal(true);
 				done();
 			});
 		});

@@ -28,7 +28,8 @@ function numberWithCommas(x) {
 exports.commands = ['youtube'];
 
 exports.message = function(uniqueId, username, message, callback) {
-	if(!youtubeRegex.test(message)) return;
+	console.log(message);
+	if(!youtubeRegex.test(message)) return callback(null, null);
 	getYoutubeInfo(youtubeRegex.exec(message)[1], function(err, msg) {
 		callback(err, msg);
 	});
