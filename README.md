@@ -1,5 +1,7 @@
 # Botsworth
 
+**THIS PROJECT IS DEAD**. I say this because I've been notified that there's a security vulnerability in math.js, which is a dependency of this project. I haven't touched this in over three years, and I have no desire to pick it up again to fix the math.js dependency when nobody is using this.
+
 It's a headless chat bot written in node.js. Pluginable.
 
 ## Wait, what?
